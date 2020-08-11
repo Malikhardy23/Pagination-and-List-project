@@ -7,7 +7,7 @@ let studentIndex = studentList.children;
 let studentsPerPage = 10;
 let minStudentsPerPage = 1;
 let totalPages = 5;
-const a = document.createElement("a");
+let start_page = page;
 
 // SHOW LIST FUNCTION //
 
@@ -42,20 +42,18 @@ const appendPageLinks = list => {
    for (let i = 0; i < totalPages; i++) {
      const li = document.createElement("li");
      const a = document.createElement("a");
-     li.appendChild(a);
      ul.appendChild(li);
+     li.appendChild(a);
    
      a.textContent = i + 1;
 
+      // LINKS EVENT LISTENER //
      a.addEventListener("click", e => {
-
-      if(e.target.className === "active"){
-         e.target.className = "inactive";
-      } else {
-         e.target.className = "active";
-      }
-
-       const currentPage = parseInt(e.target.textContent);
+      // DECLARE ACTIVE VARIABLE //
+      let current_link = document.querySelector('.pagination li a.active');
+      if(start_page == page) a.classList.add("active");
+      current_link.classList.remove('active');
+      const currentPage = parseInt(e.target.textContent);
       
       showPage(studentIndex, currentPage * 10);
      })
@@ -65,3 +63,5 @@ const appendPageLinks = list => {
  };
  
  appendPageLinks(studentIndex);
+ 
+
