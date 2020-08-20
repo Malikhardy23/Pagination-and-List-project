@@ -1,4 +1,3 @@
-
 // VARIABLES //
 
 const studentList = document.querySelector('.student-list');
@@ -14,10 +13,10 @@ let start_page = page;
 const showPage = (studentLst, page) => {
 
     for(let i = 0 ; i < studentLst.length; i++){
-        let firstItem = page - 9;
+        let firstItem = page - 10;
         let lastItem = page;
          // we only show 10 students
-      if(i >= firstItem && i <= lastItem ){
+      if(i >= firstItem && i < lastItem ){
          studentLst[i].style.display = "block";
       } else{
          studentLst[i].style.display = "none";
@@ -28,7 +27,7 @@ const showPage = (studentLst, page) => {
 showPage(studentIndex, 10);
 
 
-// APPEND LINKS FUNCTION //
+// APPENDPAGELINKS FUNCTION THAT LOOPS THROUGH EACH PAGE//
 
 const appendPageLinks = list => {
    const totalPages = Math.ceil(studentIndex.length/ studentsPerPage);
@@ -44,13 +43,22 @@ const appendPageLinks = list => {
      const a = document.createElement("a");
      ul.appendChild(li);
      li.appendChild(a);
-   
+
      a.textContent = i + 1;
 
-      // LINKS EVENT LISTENER //
+
+      // LINKS EVENT LISTENER THAT LOOPS THROUGH ACTIVE LINKS//
      a.addEventListener("click", e => {
       // DECLARE ACTIVE VARIABLE //
       let current_link = document.querySelector('.pagination li a.active');
+      
+      // FIRST ACTIVE LINK //
+       if(i == 0){
+         a.classList.add("active");
+      } else {
+         a.classList.remove("active");
+         }
+
       if(start_page == page) a.classList.add("active");
       current_link.classList.remove('active');
       const currentPage = parseInt(e.target.textContent);
@@ -64,4 +72,3 @@ const appendPageLinks = list => {
  
  appendPageLinks(studentIndex);
  
-
