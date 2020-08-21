@@ -51,16 +51,15 @@ const appendPageLinks = list => {
      a.addEventListener("click", e => {
       // DECLARE ACTIVE VARIABLE //
       let current_link = document.querySelector('.pagination li a.active');
-      
-      // FIRST ACTIVE LINK //
-       if(i == 0){
-         a.classList.add("active");
-      } else {
-         a.classList.remove("active");
+      if(current_link){
+         if(i === 0){
+            current_link.classList.add("active");
+         } else {
+            current_link.classList.remove("active");
          }
+      }
 
       if(start_page == page) a.classList.add("active");
-      current_link.classList.remove('active');
       const currentPage = parseInt(e.target.textContent);
       
       showPage(studentIndex, currentPage * 10);
