@@ -1,3 +1,4 @@
+
 // VARIABLES //
 
 const studentList = document.querySelector('.student-list');
@@ -43,17 +44,24 @@ const appendPageLinks = list => {
      const a = document.createElement("a");
      ul.appendChild(li);
      li.appendChild(a);
-
+           // FIRST ACTIVE LINK //
+           if(i == 0){
+            a.classList.add("active");
+         } else {
+            a.classList.remove("active");
+            }
+     //const firstActiveClass = document.querySelectorAll("ul > li:first-child");//
      a.textContent = i + 1;
 
 
       // LINKS EVENT LISTENER THAT LOOPS THROUGH ACTIVE LINKS//
      a.addEventListener("click", e => {
       // DECLARE ACTIVE VARIABLE //
+
       let current_link = document.querySelector('.pagination li a.active');
       if(current_link){
          if(i === 0){
-            current_link.classList.add("active");
+            current_link.className.add("active");
          } else {
             current_link.classList.remove("active");
          }
@@ -71,3 +79,4 @@ const appendPageLinks = list => {
  
  appendPageLinks(studentIndex);
  
+
